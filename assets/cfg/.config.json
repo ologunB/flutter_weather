@@ -1,0 +1,5 @@
+{
+  "base_url": "http://api.weatherstack.com/",
+  "access_key": "d25db589e9a0babfd10a4c421ce1a862",
+  "geo_code_key": "AIzaSyCJjJyC3Of4b4joSoyhtRYGxIvD_Tu7EAg"
+}
