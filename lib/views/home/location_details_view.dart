@@ -7,8 +7,8 @@ import 'package:mms_app/views/widgets/text_widgets.dart';
 import 'package:mms_app/app/size_config/extensions.dart';
 
 class LocationDetailsView extends StatefulWidget {
-  const LocationDetailsView({Key key, this.prediction}) : super(key: key);
-  final Prediction prediction;
+  const LocationDetailsView({Key key, this.name}) : super(key: key);
+  final String name;
 
   @override
   _LocationDetailsViewState createState() => _LocationDetailsViewState();
@@ -21,7 +21,7 @@ class _LocationDetailsViewState extends State<LocationDetailsView> {
   Widget build(BuildContext context) {
     return BaseView<WeatherViewModel>(
         onModelReady: (WeatherViewModel model) async {
-      model.getHistoryData(widget.prediction.description);
+      model.getHistoryData(widget.name);
     }, builder: (_, WeatherViewModel model, __) {
       return Scaffold(
         body: Container(

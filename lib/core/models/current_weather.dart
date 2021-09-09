@@ -5,18 +5,13 @@ class CurrentWeather {
 
   CurrentWeather({this.request, this.location, this.current});
 
-  CurrentWeather.fromJson(dynamic json) {
-    request =
-        json['request'] != null ? new Request.fromJson(json['request']) : null;
-    location = json['location'] != null
-        ? new Location.fromJson(json['location'])
-        : null;
+  CurrentWeather.fromJson(Map<String, dynamic> json) {
     current =
-        json['current'] != null ? new Current.fromJson(json['current']) : null;
+        json['current'] != null ?   Current.fromJson(json['current']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.request != null) {
       data['request'] = this.request.toJson();
     }
@@ -38,7 +33,7 @@ class Request {
 
   Request({this.type, this.query, this.language, this.unit});
 
-  Request.fromJson(dynamic json) {
+  Request.fromJson(Map<String, dynamic> json) {
     type = json['type'];
     query = json['query'];
     language = json['language'];
@@ -46,7 +41,7 @@ class Request {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     data['type'] = this.type;
     data['query'] = this.query;
     data['language'] = this.language;
@@ -77,7 +72,7 @@ class Location {
       this.localtimeEpoch,
       this.utcOffset});
 
-  Location.fromJson(dynamic json) {
+  Location.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     country = json['country'];
     region = json['region'];
@@ -140,27 +135,20 @@ class Current {
       this.visibility,
       this.isDay});
 
-  Current.fromJson(dynamic json) {
-    observationTime = json['observation_time'];
-    temperature = json['temperature'];
-    weatherCode = json['weather_code'];
-    weatherIcons = json['weather_icons'].cast<String>();
+  Current.fromJson(Map<String, dynamic> json) {
+     temperature = json['temperature'];
+     weatherIcons = json['weather_icons'].cast<String>();
     weatherDescriptions = json['weather_descriptions'].cast<String>();
-    windSpeed = json['wind_speed'];
-    windDegree = json['wind_degree'];
-    windDir = json['wind_dir'];
-    pressure = json['pressure'];
-    precip = json['precip'];
+
     humidity = json['humidity'];
-    cloudcover = json['cloudcover'];
-    feelslike = json['feelslike'];
-    uvIndex = json['uv_index'];
-    visibility = json['visibility'];
-    isDay = json['is_day'];
+
+    windSpeed = json['wind_speed'];
+
+
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     data['observation_time'] = this.observationTime;
     data['temperature'] = this.temperature;
     data['weather_code'] = this.weatherCode;

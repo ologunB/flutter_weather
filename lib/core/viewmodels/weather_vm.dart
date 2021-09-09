@@ -14,22 +14,26 @@ class WeatherViewModel extends BaseModel {
   CurrentWeather currentWeather;
   String location;
 
-  Future<void> getCurrentData(double lat, double lng) async {
-    print({lat, lng});
+  Future<void> getCurrentData(double lat, double lng, String loc) async {
     setBusy(true);
-    List<Placemark> result = await placemarkFromCoordinates(lat, lng);
-    if (result == null) {
-      dialog.showDialog(
-        title: 'Error',
-        description: 'Error Decoding Location',
-        buttonTitle: 'Close',
-      );
-      setBusy(false);
-      return;
+    if (loc == null) {
+      List<Placemark> result = await placemarkFromCoordinates(lat, lng);
+      if (result == null) {
+        dialog.showDialog(
+          title: 'Error',
+          description: 'Error Decoding Location',
+          buttonTitle: 'Close',
+        );
+        setBusy(false);
+        return;
+      }
+      location = result.first.locality ??
+          result.first.administrativeArea ??
+          result.first.country;
+      notifyListeners();
+    } else {
+      location = loc;
     }
-    location = result.first.locality ??
-        result.first.administrativeArea ??
-        result.first.country;
     try {
       currentWeather = await _authApi.getCurrentData(location);
       setBusy(false);

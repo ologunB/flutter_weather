@@ -9,6 +9,7 @@ import 'package:http/http.dart';
 import 'package:logger/logger.dart';
 import 'package:mms_app/app/colors.dart';
 import 'package:mms_app/core/routes/router.dart';
+import 'package:mms_app/views/home/home_view.dart';
 import 'package:mms_app/views/home/location_details_view.dart';
 import 'package:mms_app/views/widgets/utils.dart';
 import 'package:rxdart/rxdart.dart';
@@ -111,7 +112,7 @@ class _PlacesAutocompleteOverlayState extends PlacesAutocompleteState {
                               //  AppCache.addLocationHistory(a);
                               showBody = true;
                               routeTo(
-                                  context, LocationDetailsView(prediction: a));
+                                  context, HomeView(location: a.description));
                               setState(() {});
                             }),
                       )
@@ -166,7 +167,7 @@ class _PlacesAutocompleteOverlayState extends PlacesAutocompleteState {
                     keyboardType: TextInputType.text,
                     textInputAction: TextInputAction.done,
                     onChanged: (String a) {
-                      showBody = true;
+                    showBody = true;
                       setState(() {});
                     },
                     decoration: InputDecoration(
